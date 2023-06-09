@@ -1,0 +1,602 @@
+/*Imports*/
+@import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cookie&display=swap');
+/*Imports*/
+
+body {
+  font-family: 'Hind Siliguri', sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.row {
+  margin: 0 -5px;
+}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.column {
+  text-align: left;
+  padding: 0;
+  float: left;
+}
+
+p {
+  text-align: center;
+  padding-top: 20px;
+}
+
+
+h1 {
+  font-size: 35px;
+  font-weight: bold;
+  text-align: center;
+  padding: 0;
+  margin: 0;
+}
+
+h3 {
+  font-family: 'Caveat', cursive;
+  font-size: 24px;
+  text-align: center;
+  padding: 0 0 20px 0;
+  margin: 0;
+}
+
+
+input,
+select {
+  padding: 10px;
+  margin: 15px 0px;
+  outline: none;
+  border: 1px solid black;
+}
+
+input::placeholder {
+  color: black;
+}
+
+input:hover,
+select:hover {
+  background-color: #f1ece7;
+}
+
+button {
+  width: 478px;
+  padding: 10px;
+  background-color: #c18e5c;
+  color: white;
+  border: none;
+  outline: none;
+
+  cursor: pointer;
+}
+
+button:hover {
+  text-align: right;
+  background-color: #f5d0aa;
+  border: 2px solid #c18e5c;
+  color: #c18e5c;
+}
+
+.small {
+  width: 210px;
+  margin-right: 10px;
+}
+
+.long {
+  width: 455px;
+}
+
+.signin input {
+  padding: 20px 10px;
+
+}
+
+/*Nav*/
+nav {
+  padding: 20px 0;
+  margin: 5px 0;
+  z-index: 99;
+  top: 0;
+  width: 100%;
+}
+
+.nav-wrap {
+  padding: 20px 50px;
+}
+
+.topnav {
+  overflow: hidden;
+  background-color: transparent;
+  position: relative;
+  padding-bottom: 30px;
+}
+
+.topnav a {
+  cursor: pointer;
+  color: black;
+  text-align: center;
+  padding: 0 40px;
+  text-decoration: none;
+  font-size: 18px;
+  margin-top: 20px;
+}
+
+.topnav a:hover {
+  color: grey;
+}
+
+.topnav .column1,
+.topnav .column3 {
+  float: left;
+  width: 20%;
+  padding: 0 10px;
+  padding-bottom: 20px;
+}
+
+.topnav .column2 {
+  float: left;
+  width: 55%;
+  padding: 10px;
+  padding-bottom: 20px;
+}
+
+.topnav .column3 {
+  float: right;
+}
+
+
+#logo {
+  left: 0;
+  font-size: 40px;
+  color: white;
+  font-family: 'Londrina Outline', cursive;
+  padding-right: 30px;
+
+}
+
+.topnav-right {
+  text-align: right;
+}
+
+.topnav-center {
+  text-align: center;
+}
+
+.topnav button {
+  margin-right: 30px;
+  height: 40px;
+  width: 110px;
+}
+
+.topnav button:hover {
+  opacity: 0.7;
+  border: 2px solid white;
+}
+
+/*end of nav*/
+
+/*Sign in*/
+.signin .column:first-child {
+  width: 65%;
+  color: black;
+}
+
+.signin .column:not(:first-child) {
+  width: 35%;
+}
+
+.signin-nav {
+  padding: 20px 50px;
+}
+
+.signin-nav td {
+  font-family: 'Caveat', cursive;
+  padding: 5px;
+}
+
+.signin-nav h2 {
+  margin: 0;
+  padding: 5px 0;
+  font-size: 26px;
+}
+
+.signin .container,
+.add-Employee .container {
+  padding: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  margin-top: 150px;
+
+}
+
+.myPassword {
+  position: relative;
+  width: 295px;
+}
+
+
+.myPassword img {
+  cursor: pointer;
+  position: absolute;
+  width: 25px;
+  right: -170px;
+  top: 30px;
+}
+
+
+#bg {
+  background-image: url("./Assets/Images/bg.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+}
+
+/*End of sign in*/
+
+
+/*Add new employee*/
+.add-Employee {
+  padding: 0;
+}
+
+.add-Employee #bg {
+  background-image: url("./Assets/Images/bg.jpg");
+}
+
+
+.add-Employee .column:first-child {
+  width: 70%;
+  color: black;
+}
+
+.add-Employee .column:not(:first-child) {
+  width: 30%;
+}
+
+.add-Employee .container {
+  margin-top: 20px;
+}
+
+/*end of add new employee*/
+
+/*Display Employees*/
+.display {
+  margin: 0;
+  padding: 0;
+}
+
+.search{
+  margin: 20px 20px;
+}
+.search button {
+  margin-left: 10px;
+  width: 130px;
+}
+
+.search input {
+  width: 200px !important;
+}
+
+.content {
+  margin: 50px;
+}
+
+#content {
+  display: block;
+}
+
+.content h1 {
+  font-size: 30px;
+  font-weight: bold;
+  text-align: left;
+  position: relative;
+}
+
+.content span {
+  font-size: 16px;
+  border: 1px solid black;
+  padding: 0 20px;
+  margin-top: 10px !important;
+  margin-left: 10px;
+  position: absolute;
+}
+
+.content #myCards {
+  margin: 80px 30px;
+}
+
+.content .column {
+
+  width: 30%;
+  padding: 10px;
+}
+
+.content td {
+  padding: 5px 0px;
+}
+
+.content .card {
+  height: 310px;
+  width: 90%;
+  background-color: #f1ece7;
+  padding: 20px 0px 10px 20px;
+  border: 1px solid #c18e5c;
+  box-shadow: 12px 12px 2px 1px #c18e5c;
+}
+
+#step1 .column:first-child {
+  width: 25% !important;
+}
+
+#step1 .column:not(:first-child) {
+  width: 30% !important;
+  padding: 40px 10px 0 0;
+}
+
+.card #align-right {
+  padding: 30px 10px 0 0 !important;
+  display: flex;
+  justify-content: center;
+}
+
+#step2 .column {
+  width: 40%;
+  padding: 10px;
+}
+
+#step1,
+#step2 {
+  width: 100%;
+}
+
+.card .row {
+  margin: 0;
+}
+
+.card button {
+  width: auto;
+  padding: 5px;
+  background-color: transparent;
+
+  border: none;
+  outline: none;
+
+  cursor: pointer;
+}
+
+.card button:hover {
+  text-align: right;
+  background-color: #f5d0aa;
+  border: 2px solid #c18e5c;
+  color: #c18e5c;
+}
+
+
+
+.card h4 {
+  font-size: 20px;
+}
+
+.card span {
+  color: #c18e5c;
+  border: none;
+
+  font-size: 20px;
+  padding: 0;
+  margin-top: 0px !important;
+  margin-left: 0px !important;
+  position: relative;
+}
+
+.content h3 {
+  text-align: left;
+}
+
+#update {
+  display: none;
+
+}
+
+#update table {
+  text-align: left;
+  border-spacing: 15px;
+  width: 100%;
+
+  margin: 30px 0;
+}
+
+#update input::placeholder {
+  color: gray;
+}
+
+#update span {
+  color: #c18e5c;
+  border: none;
+
+  font-size: 20px;
+  padding: 0;
+  margin-top: 0px !important;
+  margin-left: 0px !important;
+  position: relative;
+}
+
+#update .column {
+  width: 45% !important;
+
+  display: flex;
+  justify-content: center;
+}
+
+/*End of display employees*/
+
+/*Media*/
+@media screen and (max-width: 700px) {
+
+  /*Topnav*/
+  nav {
+    padding: 0;
+    margin: 0;
+  }
+
+  .topnav .column2 {
+    border-top: 1px solid white;
+    padding-top: 20px;
+  }
+
+  .topnav .column2 a {
+    padding: 0 10px;
+    font-size: 14px;
+    text-align: left;
+  }
+
+  .topnav .column,
+  .topnav .column2 {
+    width: 95%;
+  }
+
+  .topnav .column1,
+  .topnav .column3 {
+
+    width: 40%;
+  }
+
+  .topnav-right {
+    text-align: right;
+  }
+
+  .nav-wrap {
+    padding: 20px 0px;
+  }
+
+  .topnav {
+    padding: 0 30px;
+    height: auto;
+  }
+
+  .topnav button {
+    width: 90px;
+    height: 35px;
+    font-size: 12px;
+    margin-right: 0;
+  }
+
+  .topnav-right {
+    margin-top: 10px;
+  }
+
+  #logo {
+    padding-right: 0;
+    margin: 0;
+  }
+
+  .topnav a {
+    padding: 0px;
+
+  }
+
+  /*Topnav*/
+
+  /*Display*/
+  .add-Employee .column:first-child {
+    width: 95%;
+  }
+
+  .add-Employee .column:not(:first-child) {
+    width: 0%;
+    display: none;
+  }
+
+  .add-Employee .container {
+    margin: 0;
+    padding: 40px;
+  }
+
+  .add-Employee button {
+    margin-left: 10px;
+  }
+
+  .content .column,
+  .content .card,
+  #update .column {
+    width: 95% !important;
+  }
+
+  .content #myCards {
+    margin: 20px 0;
+  }
+
+
+  #step2 .column,
+  #step1 .column:first-child,
+  #step1 .column:not(:first-child) {
+    width: 40% !important;
+
+  }
+
+  .content .card {
+    height: auto;
+  }
+
+  .card h4 {
+    font-size: 14px;
+  }
+
+  .card span {
+    font-size: 14px;
+  }
+
+  #update input {
+    width: 100% !important;
+  }
+
+  .upEmp {
+    margin-top: 80px;
+  }
+
+  /*Display*/
+
+
+
+
+
+
+
+
+  input,
+  select {
+    padding: 10px;
+    margin: 15px 0px;
+    outline: none;
+    border: 1px solid black;
+  }
+
+  button {
+    width: 100%;
+  }
+
+
+  .small {
+    width: 100%;
+    margin-right: 0px;
+  }
+
+  .long {
+    width: 100%;
+  }
+}
+
+/*End of media*/
