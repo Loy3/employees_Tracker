@@ -58,7 +58,7 @@ export default function Employees(props) {
             if (searchEmp === employees[e].empEmailAddress) {
                 console.log(employees[e].empEmailAddress);
                 setMessage("Found");
-                window.alert(searchEmp + " was found!");
+                window.alert("We found " + employees[e].empName + employees[e].empSurname);
 
             } /*else {
                 setMessage("Not Found");
@@ -147,41 +147,48 @@ export default function Employees(props) {
 
                 <div className="row">
                     <div className="column">
-                        <div className="update" >
-                            <h1>Update</h1>
-                            <h3>Update Employee</h3>
+
+                        {
+                            displayEmp.map((emp, index) => {
+                                return (
+                                    <div className="update" key={index}>
+                                        <h1>Update</h1>
+                                        <h3>Update Employee</h3>
+
+                                        <input type="text" className="small" placeholder={emp.empName} onChange={(event) => setName(event.target.value)} />
+                                        <input type="text" className="small" placeholder={emp.empSurname} onChange={(event) => setSurname(event.target.value)} />
+                                        <br />
+                                        <input type="number" className="long" placeholder={emp.empIdNumber} onChange={(event) => setIdNumber(event.target.value)} />
+                                        <br />
+                                        <br />
+                                        <input type="email" className="small" placeholder={emp.empEmailAddress} onChange={(event) => setEmailAddress(event.target.value)} />
+                                        <input type="number" className="small" placeholder={emp.empPhoneNumber} onChange={(event) => setPhoneNumber(event.target.value)} />
+                                        <br />
+
+                                        <select onChange={(event) => setPosition(event.target.value)}>
+                                            <option hidden={true} >
+                                                Select Category
+                                            </option>
+                                            <option value={"Back-End Developer"}>Back-End Developer</option>
+                                            <option value={"Business Analyst"}>Business Analyst</option>
+                                            <option value={"Front-End Developer"}>Front-End Developer</option>
+                                            <option value={"Full-Stack Developer"}>Full-Stack Developer</option>
+                                            <option value={"Scrum Master"}>Scrum Master</option>
+                                            <option value={"Team Leader"}>Team Leader</option>
+                                            <option value={"Tester"}>Tester</option>
+
+                                        </select>
+                                        <br />
 
 
-                            <input type="text" className="small" placeholder="Enter Employee's First Name" onChange={(event) => setName(event.target.value)} />
-                            <input type="text" className="small" placeholder="Enter Employee's Last Name" onChange={(event) => setSurname(event.target.value)} />
-                            <br />
-                            <input type="number" className="long" placeholder="Enter Employee's ID Number" onChange={(event) => setIdNumber(event.target.value)} />
-                            <br />
-                            <br />
-                            <input type="email" className="small" placeholder="Enter Employee's Email Address" onChange={(event) => setEmailAddress(event.target.value)} />
-                            <input type="number" className="small" placeholder="Enter Employee's Phone Number" onChange={(event) => setPhoneNumber(event.target.value)} />
-                            <br />
+                                        <br />
+                                        <button onClick={event => updateEmp(event,)}>Update Employee</button>
 
-                            <select onChange={(event) => setPosition(event.target.value)}>
-                                <option hidden={true} >
-                                    Select Category
-                                </option>
-                                <option value={"Back-End Developer"}>Back-End Developer</option>
-                                <option value={"Business Analyst"}>Business Analyst</option>
-                                <option value={"Front-End Developer"}>Front-End Developer</option>
-                                <option value={"Full-Stack Developer"}>Full-Stack Developer</option>
-                                <option value={"Scrum Master"}>Scrum Master</option>
-                                <option value={"Team Leader"}>Team Leader</option>
-                                <option value={"Tester"}>Tester</option>
+                                    </div>
+                                )
+                            })
+                        }
 
-                            </select>
-                            <br />
-
-
-                            <br />
-                            <button onClick={event => updateEmp(event,)}>Update Employee</button>
-
-                        </div>
                     </div>
                     <div className="column">
                         <div className="upEmp">
