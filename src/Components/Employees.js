@@ -7,8 +7,11 @@ import edit from "../Assets/Icons/editing.png";
 
 import { useState } from "react";
 
+import { useNavigate } from "react-router-dom";
+
 
 export default function Employees(props) {
+    const navigate = useNavigate();
     /*function display() {
 
 
@@ -24,30 +27,45 @@ export default function Employees(props) {
     )*/
 
 
+
+
+
+    let employees = "";
+    //let displayEmp = [];
     const stringifiedEmp = localStorage.getItem('employees');
-    let employees = JSON.parse(stringifiedEmp);
+    if (stringifiedEmp === "" || stringifiedEmp === null) {
+        localStorage.setItem('employees', JSON.stringify([]));
+    } else {
+        employees = JSON.parse(stringifiedEmp);
+    }
+    /*
+        const stringifiedDEm = localStorage.getItem('employee');
+        if (stringifiedDEm === "" || stringifiedDEm === null) {
+            localStorage.setItem('employee', JSON.stringify(""));
+        } else {
+            displayEmp = JSON.parse(stringifiedDEm);
+        }
+        
+        console.log(displayEmp);
+    */
     console.log(employees);
-
-    const stringifiedDEmp = localStorage.getItem('employee');
-    let displayEmp = JSON.parse(stringifiedDEmp);
-    console.log(displayEmp);
-
-    let employee = [];
+    let employee = [{}];
 
 
-    const [idNumber, setIdNumber] = useState('');
-    const [name, setName] = useState('');
-    const [surname, setSurname] = useState('');
-    const [emailAddress, setEmailAddress] = useState('');
-    const [position, setPosition] = useState('');
-    const [phoneNumber, setPhoneNumber] = useState('');
+    const [user, setUser] = useState({
+        idNumber: '',
+        name: '',
+        surname: '',
+        emailAddress: '',
+        position: '',
+        phoneNumber: '',
+    });
 
     const [searchEmp, setSearchEmp] = useState('');
 
     const [idNum, setId] = useState(0);
     const [compMail, setComMail] = useState('');
 
-    const [message, setMessage] = useState('');
 
     function search() {
         console.log(employees);
@@ -56,15 +74,60 @@ export default function Employees(props) {
         for (let e = 0; e < employees.length; e++) {
 
             if (searchEmp === employees[e].empEmailAddress) {
-                console.log(employees[e].empEmailAddress);
-                setMessage("Found");
-                window.alert("We found " + employees[e].empName + employees[e].empSurname);
+                setUser({
+                    idNumber: employees[e].empIdNumber,
+                    name: employees[e].empName,
+                    surname: employees[e].empSurname,
+                    emailAddress: employees[e].empEmailAddress,
+                    position: employees[e].empPosition,
+                    phoneNumber: employees[e].empPhoneNumber,
+                })
+
+                document.getElementById("all").style.display = "none";
+                document.getElementById("searched").style.display = "block";
 
             } /*else {
                 setMessage("Not Found");
             }
 */
         }
+        console.log(employee);
+
+
+    }
+
+    function back() {
+        document.getElementById("all").style.display = "block";
+        document.getElementById("searched").style.display = "none";
+    }
+
+    function deleteEmployee(event, index) {
+
+        employees.splice(index, 1);
+        console.log(employees);
+        localStorage.setItem('employees', JSON.stringify(employees));
+
+        window.location.reload(false);
+        console.log(event);
+        console.log(employees);
+
+
+    }
+
+    function update(event, data, index, employeeEmail) {
+
+        setId(index);
+        console.log(idNum)
+        employee = [data];
+        localStorage.setItem("employee", JSON.stringify(employee));
+        localStorage.setItem("employeeID", JSON.stringify(idNum));
+        navigate("/update");
+
+        setComMail(employeeEmail);
+        console.log(compMail);
+        console.log(employee);
+
+
 
     }
 
@@ -81,57 +144,105 @@ export default function Employees(props) {
                     <input type="text" className="long" placeholder="Enter email address to search" onChange={(event) => setSearchEmp(event.target.value)} />
                     <button onClick={search}>Search</button>
                     <br />
-                    {message}
                 </div>
 
-                <div className="row" id={"myCards"}>
-                    {employees.map((data, index) => (
+                <div id={"all"}>
+                    <div className="row" id={"myCards"}>
+                        {employees.map((data, index) => (
 
-                        <div className="column" key={index} >
+                            <div className="column" key={index} >
+                                <div className="card">
+
+                                    <div className="row" id={"step1"}>
+                                        <div className="column" >
+                                            <img src={image} alt='Employee' width={100} />
+                                        </div>
+                                        <div className="column" id={"align-right"}>
+                                            <div>
+                                                <h4>{data.empName + " " + data.empSurname}</h4>
+                                                <h4>Contact #:
+                                                    <br /><span>{data.empPhoneNumber}</span></h4>
+                                            </div>
+                                        </div>
+                                        <div className="column" id={"align-right"}>
+                                            <table>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>
+                                                            <button onClick={event => update(event, data, index, data.empEmailAddress)}>
+                                                                <img src={edit} alt="Edit" width={20} title="Edit" />
+                                                            </button>
+                                                        </td>
+                                                        <td>
+                                                            <button onClick={event => deleteEmployee(event, index)}>
+                                                                <img src={trash} alt="Delete" width={20} title="Delete" />
+
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+
+                                    <div className="row" id={"step2"}>
+                                        <div className="column">
+                                            <h4> ID Number: <span>{data.empIdNumber}</span></h4>
+
+                                        </div>
+                                        <div className="column">
+                                            <h4>Email:
+                                                <br /><span>{data.empEmailAddress}</span></h4>
+                                        </div>
+                                        <div className="column">
+                                            <h4>Position:
+                                                <br /><span>{data.empPosition}</span></h4>
+                                        </div>
+
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+
+                <div id={"searched"}>
+
+                    <div className="row" id={"myCards"}>
+
+
+                        <div className="column" >
                             <div className="card">
 
                                 <div className="row" id={"step1"}>
-                                    <div className="column">
+                                    <div className="column" >
                                         <img src={image} alt='Employee' width={100} />
                                     </div>
-                                    <div className="column">
-                                        <h4>{data.empName + " " + data.empSurname}</h4>
-                                        <h4>ID: {data.empIdNumber}</h4>
-                                    </div>
                                     <div className="column" id={"align-right"}>
-                                        <table>
-                                            <tbody>
-                                                <tr>
-                                                    <td>
-                                                        <button onClick={event => update(event, data, index, data.empEmailAddress)}>
-                                                            <img src={edit} alt="Edit" width={25} title="Edit" />
-                                                        </button>
-                                                    </td>
-                                                    <td>
-                                                        <button onClick={event => deleteEmployee(event, index)}>
-                                                            <img src={trash} alt="Delete" width={25} title="Delete" />
-
-                                                        </button>
-                                                    </td>
-                                                </tr>
-
-                                            </tbody>
-                                        </table>
+                                        <div>
+                                            <h4>{user.name + " " + user.surname}</h4>
+                                            <h4>Contact #:
+                                                <br /><span>{user.phoneNumber}</span></h4>
+                                        </div>
                                     </div>
+
                                 </div>
 
                                 <div className="row" id={"step2"}>
                                     <div className="column">
-                                        <h4>Email:
-                                            <br /><span>{data.empEmailAddress}</span></h4>
+                                        <h4> ID Number: <span>{user.idNumber}</span></h4>
+
                                     </div>
                                     <div className="column">
-                                        <h4>Contact #:
-                                            <br /><span>{data.empPhoneNumber}</span></h4>
+                                        <h4>Email:
+                                            <br /><span>{user.emailAddress}</span></h4>
                                     </div>
                                     <div className="column">
                                         <h4>Position:
-                                            <br /><span>{data.empPosition}</span></h4>
+                                            <br /><span>{user.position}</span></h4>
                                     </div>
 
 
@@ -139,219 +250,13 @@ export default function Employees(props) {
 
                             </div>
                         </div>
-                    ))}
-                </div>
-            </div>
-
-            <div className="content" id={"update"}>
-
-                <div className="row">
-                    <div className="column">
-
-                        {
-                            displayEmp.map((emp, index) => {
-                                return (
-                                    <div className="update" key={index}>
-                                        <h1>Update</h1>
-                                        <h3>Update Employee</h3>
-
-                                        <input type="text" className="small" placeholder={emp.empName} onChange={(event) => setName(event.target.value)} />
-                                        <input type="text" className="small" placeholder={emp.empSurname} onChange={(event) => setSurname(event.target.value)} />
-                                        <br />
-                                        <input type="number" className="long" placeholder={emp.empIdNumber} onChange={(event) => setIdNumber(event.target.value)} />
-                                        <br />
-                                        <br />
-                                        <input type="email" className="small" placeholder={emp.empEmailAddress} onChange={(event) => setEmailAddress(event.target.value)} />
-                                        <input type="number" className="small" placeholder={emp.empPhoneNumber} onChange={(event) => setPhoneNumber(event.target.value)} />
-                                        <br />
-
-                                        <select onChange={(event) => setPosition(event.target.value)}>
-                                            <option hidden={true} >
-                                                Select Category
-                                            </option>
-                                            <option value={"Back-End Developer"}>Back-End Developer</option>
-                                            <option value={"Business Analyst"}>Business Analyst</option>
-                                            <option value={"Front-End Developer"}>Front-End Developer</option>
-                                            <option value={"Full-Stack Developer"}>Full-Stack Developer</option>
-                                            <option value={"Scrum Master"}>Scrum Master</option>
-                                            <option value={"Team Leader"}>Team Leader</option>
-                                            <option value={"Tester"}>Tester</option>
-
-                                        </select>
-                                        <br />
-
-
-                                        <br />
-                                        <button onClick={event => updateEmp(event,)}>Update Employee</button>
-
-                                    </div>
-                                )
-                            })
-                        }
 
                     </div>
-                    <div className="column">
-                        <div className="upEmp">
-                            <h1>Employee</h1>
-                            {
-                                displayEmp.map((emp, index) => {
-                                    return (
-                                        <div key={index}>
-                                            <table>
-                                                <tbody>
-                                                    <tr>
-                                                        <td>
-                                                            <span>Name & Surname:</span>
-                                                            <br />
-                                                            {emp.empName + " " + emp.empSurname}
-                                                        </td>
-                                                        <td>
-                                                            <span>Id Number:</span>
-                                                            <br />
-                                                            {emp.empIdNumber}
-                                                        </td>
-                                                        <td>
-                                                            <span>Position:</span>
-                                                            <br />
-                                                            {emp.empPosition}
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <span>Email Address:</span>
-                                                            <br />
-                                                            {emp.empEmailAddress}
-                                                        </td>
-
-                                                        <td colSpan={2}>
-                                                            <span>Phone Number:</span>
-                                                            <br />
-                                                            {emp.empPhoneNumber}
-                                                        </td>
-
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-
-                                        </div>
-
-                                    )
-                                })
-                            }
-
-                            <button onClick={cancelUp}>Cancel Update</button>
-
-                        </div>
-                    </div>
+                    <button onClick={back}>Back</button>
                 </div>
-
-
-
             </div>
-
         </div>
     )
-
-
-
-    function deleteEmployee(event, index) {
-
-        employees.splice(index, 1);
-        console.log(employees);
-        localStorage.setItem('employees', JSON.stringify(employees));
-
-        window.location.reload(false);
-        console.log(event);
-        console.log(employees);
-
-
-    }
-
-    function update(event, data, index, employeeEmail) {
-        document.getElementById("update").style.display = "block";
-        document.getElementById("content").style.display = "none";
-
-        setId(index);
-        employee = [data];
-        localStorage.setItem("employee", JSON.stringify(employee));
-
-        setComMail(employeeEmail);
-        console.log(employee);
-
-    }
-
-    function updateEmp() {
-
-        document.getElementById("content").style.display = "block";
-        console.log(idNum);
-        console.log(compMail);
-
-        for (let i = 0; i < employees.length; i++) {
-            if (compMail === employees[i].empEmailAddress) {
-                setId(i);
-            }
-        }
-
-        console.log(idNum);
-
-        console.log(employees[idNum]);
-
-
-        if (name === "") {
-            setName(employees[idNum].empName);
-        } else {
-            setName(name);
-        }
-
-        if (surname === "") {
-            setSurname(employees[idNum].empSurname);
-        } else {
-            setSurname(surname);
-        }
-
-        if (idNumber === "") {
-            setIdNumber(employees[idNum].empIdNumber);
-        } else {
-            setId(idNumber);
-        }
-
-        if (emailAddress === "") {
-            setEmailAddress(employees[idNum].empEmailAddress);
-        } else {
-            setEmailAddress(emailAddress);
-        }
-
-        if (phoneNumber === "") {
-            setPhoneNumber(employees[idNum].empPhoneNumber);
-        } else {
-            setIdNumber(phoneNumber);
-        }
-
-        if (position === "") {
-            setPosition(employees[idNum].empPosition);
-        } else {
-            setPosition(position);
-        }
-
-        employees[idNum].empName = name;
-        employees[idNum].empSurname = surname;
-        employees[idNum].empIdNumber = idNumber;
-        employees[idNum].empEmailAddress = emailAddress;
-        employees[idNum].empPhoneNumber = phoneNumber;
-        employees[idNum].empPosition = position;
-
-        console.log(employees[idNum]);
-        localStorage.setItem('employees', JSON.stringify(employees));
-
-        window.location.reload(false);
-
-    }
-
-    function cancelUp() {
-        document.getElementById("update").style.display = "none";
-        document.getElementById("content").style.display = "block";
-    }
-
 }
 
 

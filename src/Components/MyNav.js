@@ -30,8 +30,8 @@ export default function MyNav() {
                         </div>
                         <div className='column2'>
                             <div className="topnav-center" id="topnav-center" align="center">
-                                <a href='' onClick={toAdd}>Add Employee</a>
-                                <a href='' onClick={toView}>View Employee</a>
+                                <a href='/' onClick={toAdd}>Add Employee</a>
+                                <a href='/employee' onClick={toView}>View Employee</a>
                             </div>
                         </div>
 
@@ -43,21 +43,3 @@ export default function MyNav() {
 
     );
 }
-
-/*
- <div className="signin-nav">
-
-            <table>
-                <tbody>
-                    <tr>
-                        <td>
-                            
-                        </td>
-                        <td>
-                            <h2>Employee App</h2>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        */

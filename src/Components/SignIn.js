@@ -23,10 +23,6 @@ export default function SignIn(props) {
         navigate("/newEmp");
     }
 
-    /*function toSignUp() {
-       // navigate("/signup");
-    }*/
-
     return (
         <div className="signin">
             <div className="row">
