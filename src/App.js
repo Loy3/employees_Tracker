@@ -15,8 +15,18 @@ function App() {
   }
 **/
   //Add new Employee
+  /* const stringifiedEmp = localStorage.getItem('employees');
+   let employees = JSON.parse(stringifiedEmp);
+ */
+  let employees = [];
   const stringifiedEmp = localStorage.getItem('employees');
-  let employees = JSON.parse(stringifiedEmp);
+  if (stringifiedEmp === "" || stringifiedEmp === null) {
+    localStorage.setItem('employees', JSON.stringify([]));
+  } else {
+    employees = JSON.parse(stringifiedEmp);
+  }
+
+
   const [newEmployee, setEmployee] = useState(employees);
 
   const employee = (empIdNumber, empName, empSurname, empEmailAddress, empPosition, empPhoneNumber, empImage) => {

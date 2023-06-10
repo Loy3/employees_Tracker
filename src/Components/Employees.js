@@ -26,15 +26,12 @@ export default function Employees(props) {
         </>
     )*/
 
-
-
-
-
     let employees = "";
     //let displayEmp = [];
     const stringifiedEmp = localStorage.getItem('employees');
     if (stringifiedEmp === "" || stringifiedEmp === null) {
-        localStorage.setItem('employees', JSON.stringify([]));
+        localStorage.setItem('employees', JSON.stringify(null));
+        navigate("/");
     } else {
         employees = JSON.parse(stringifiedEmp);
     }
@@ -140,13 +137,14 @@ export default function Employees(props) {
                 <h1>Employess: <span>{employees.length} users</span></h1>
                 <br />
 
+                
+
+                <div id={"all"}>
                 <div className="search">
                     <input type="text" className="long" placeholder="Enter email address to search" onChange={(event) => setSearchEmp(event.target.value)} />
                     <button onClick={search}>Search</button>
                     <br />
                 </div>
-
-                <div id={"all"}>
                     <div className="row" id={"myCards"}>
                         {employees.map((data, index) => (
 
