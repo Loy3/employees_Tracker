@@ -8,7 +8,12 @@ export default function MyNav() {
         navigate("/employee");
     }
 
-    function toAdd(){
+    function toAdd() {
+        navigate("/");
+    }
+
+    function signOut() {
+        localStorage.clear();
         navigate("/");
     }
 
@@ -25,7 +30,7 @@ export default function MyNav() {
                         </div>
                         <div className='column3'>
                             <div className="topnav-right">
-                                <button>Sign Out</button>
+                                <button onClick={signOut}>Sign Out</button>
                             </div>
                         </div>
                         <div className='column2'>

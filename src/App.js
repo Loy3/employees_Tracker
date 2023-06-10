@@ -18,7 +18,7 @@ function App() {
   /* const stringifiedEmp = localStorage.getItem('employees');
    let employees = JSON.parse(stringifiedEmp);
  */
-  let employees = [];
+  let employees = "";
   const stringifiedEmp = localStorage.getItem('employees');
   if (stringifiedEmp === "" || stringifiedEmp === null) {
     localStorage.setItem('employees', JSON.stringify([]));

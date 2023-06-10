@@ -26,11 +26,11 @@ export default function Employees(props) {
         </>
     )*/
 
-    let employees = "";
+    let employees = [];
     //let displayEmp = [];
     const stringifiedEmp = localStorage.getItem('employees');
     if (stringifiedEmp === "" || stringifiedEmp === null) {
-        localStorage.setItem('employees', JSON.stringify(null));
+        localStorage.setItem('employees', JSON.stringify([]));
         navigate("/");
     } else {
         employees = JSON.parse(stringifiedEmp);
