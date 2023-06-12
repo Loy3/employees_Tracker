@@ -80,7 +80,7 @@ export default function AddNewEmployee(props) {
 
                             <br />
                             <br />
-                            <p>Want to view employess? <a href='' onClick={toView}>Click here</a> To view.</p>
+                            <p>Want to view employess? <a href={() => false} onClick={toView}>Click here</a> To view.</p>
                         </div>
                     </div>
 

@@ -35,8 +35,8 @@ export default function MyNav() {
                         </div>
                         <div className='column2'>
                             <div className="topnav-center" id="topnav-center" align="center">
-                                <a href='' onClick={toAdd}>Add Employee</a>
-                                <a href='' onClick={toView}>View Employee</a>
+                                <a href={() => false} onClick={toAdd}>Add Employee</a>
+                                <a href={() => false} onClick={toView}>View Employee</a>
                             </div>
                         </div>
 
