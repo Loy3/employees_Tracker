@@ -28,6 +28,7 @@ export default function AddNewEmployee(props) {
         if (event.target.files && event.target.files[0]) {
             setEmpImage(URL.createObjectURL(event.target.files[0]));
         }
+        console.log(empImage);
     }
 
     function toView() {

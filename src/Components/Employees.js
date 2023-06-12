@@ -9,46 +9,21 @@ import { useState } from "react";
 
 import { useNavigate } from "react-router-dom";
 
-
 export default function Employees(props) {
     const navigate = useNavigate();
-    /*function display() {
 
-
-        const stringifiedEmp = localStorage.getItem('employees');
-        const personAsObjectAgain = JSON.parse(stringifiedEmp);
-        console.log(personAsObjectAgain);
-    }
-
-    return (
-        <>
-            {display}
-        </>
-    )*/
 
     let employees = [];
-    //let displayEmp = [];
     const stringifiedEmp = localStorage.getItem('employees');
     if (stringifiedEmp === "" || stringifiedEmp === null) {
         localStorage.setItem('employees', JSON.stringify([]));
         navigate("/");
     } else {
         employees = JSON.parse(stringifiedEmp);
+        console.log(employees)
     }
-    /*
-        const stringifiedDEm = localStorage.getItem('employee');
-        if (stringifiedDEm === "" || stringifiedDEm === null) {
-            localStorage.setItem('employee', JSON.stringify(""));
-        } else {
-            displayEmp = JSON.parse(stringifiedDEm);
-        }
-        
-        console.log(displayEmp);
-    */
-    console.log(employees);
+   
     let employee = [{}];
-
-
     const [user, setUser] = useState({
         idNumber: '',
         name: '',
@@ -60,13 +35,8 @@ export default function Employees(props) {
 
     const [searchEmp, setSearchEmp] = useState('');
 
-    const [idNum, setId] = useState(0);
-    const [compMail, setComMail] = useState('');
-
 
     function search() {
-        console.log(employees);
-        console.log(searchEmp);
 
         for (let e = 0; e < employees.length; e++) {
 
@@ -83,14 +53,8 @@ export default function Employees(props) {
                 document.getElementById("all").style.display = "none";
                 document.getElementById("searched").style.display = "block";
 
-            } /*else {
-                setMessage("Not Found");
-            }
-*/
+            } 
         }
-        console.log(employee);
-
-
     }
 
     function back() {
@@ -101,31 +65,16 @@ export default function Employees(props) {
     function deleteEmployee(event, index) {
 
         employees.splice(index, 1);
-        console.log(employees);
         localStorage.setItem('employees', JSON.stringify(employees));
 
         window.location.reload(false);
-        console.log(event);
-        console.log(employees);
-
-
     }
 
-    function update(event, data, index, employeeEmail) {
+    function update(event, data) {
 
-        setId(index);
-        console.log(idNum)
         employee = [data];
         localStorage.setItem("employee", JSON.stringify(employee));
-        localStorage.setItem("employeeID", JSON.stringify(idNum));
         navigate("/update");
-
-        setComMail(employeeEmail);
-        console.log(compMail);
-        console.log(employee);
-
-
-
     }
 
 
@@ -136,8 +85,6 @@ export default function Employees(props) {
 
                 <h1>Employess: <span>{employees.length} users</span></h1>
                 <br />
-
-                
 
                 <div id={"all"}>
                 <div className="search">
@@ -167,7 +114,7 @@ export default function Employees(props) {
                                                 <tbody>
                                                     <tr>
                                                         <td>
-                                                            <button onClick={event => update(event, data, index, data.empEmailAddress)}>
+                                                            <button onClick={event => update(event, data)}>
                                                                 <img src={edit} alt="Edit" width={20} title="Edit" />
                                                             </button>
                                                         </td>

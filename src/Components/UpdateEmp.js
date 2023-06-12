@@ -1,18 +1,13 @@
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
+import image from "../Assets/Potraits/4.png";
 
 export default function UpdateEmp(props) {
     const navigate = useNavigate();
 
     const stringifiedDEm = localStorage.getItem('employee');
-    // localStorage.setItem('employee', JSON.stringify(stringifiedDEm));
     let displayEmp = JSON.parse(stringifiedDEm);
-    //const [display, setDisplay] = useState(displayEmp);
 
-    //console.log(displayEmp);
-
-    /*const stringifiedID = localStorage.getItem('employeeID');
-    const empID = JSON.parse(stringifiedID)*/
     const [idNum, setId] = useState(0);
 
 
@@ -35,7 +30,6 @@ export default function UpdateEmp(props) {
                 setId(e);
             }
         }
-        console.log(idNum);
     }, [displayEmp, employees, idNum])
 
     const [user, setUser] = useState({
@@ -49,15 +43,6 @@ export default function UpdateEmp(props) {
 
 
     function updateEmp() {
-
-        console.log(idNum);
-       
-
-        console.log(idNum);
-
-        console.log(employees[idNum]);
-
-        console.log(idNum);
         employees[idNum].empName = user.name;
         employees[idNum].empSurname = user.surname;
         employees[idNum].empIdNumber = user.idNumber;
@@ -128,27 +113,31 @@ export default function UpdateEmp(props) {
                         }
 
                     </div>
-                    <div className="column">
+
+                    <div className="column" id={"side-view"}>
                         <div className="upEmp">
                             <h1>Employee</h1>
                             {
                                 displayEmp.map((emp, index) => {
                                     return (
                                         <div key={index}>
+
+
                                             <table>
                                                 <tbody>
                                                     <tr>
+                                                        <td rowSpan={1}>
+                                                            <img src={image} alt='Employee' />
+                                                        </td>
                                                         <td>
                                                             <span>Name & Surname:</span>
                                                             <br />
                                                             {emp.empName + " " + emp.empSurname}
-                                                        </td>
-                                                        <td>
+                                                            <br />
                                                             <span>Id Number:</span>
                                                             <br />
                                                             {emp.empIdNumber}
-                                                        </td>
-                                                        <td>
+                                                            <br />
                                                             <span>Position:</span>
                                                             <br />
                                                             {emp.empPosition}
@@ -160,8 +149,7 @@ export default function UpdateEmp(props) {
                                                             <br />
                                                             {emp.empEmailAddress}
                                                         </td>
-
-                                                        <td colSpan={2}>
+                                                        <td>
                                                             <span>Phone Number:</span>
                                                             <br />
                                                             {emp.empPhoneNumber}
