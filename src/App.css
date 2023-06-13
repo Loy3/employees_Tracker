@@ -273,6 +273,12 @@ nav {
   margin-top: 20px;
 }
 
+.add-Employee p {
+  padding: 0;
+  margin: 0;
+  color: grey;
+}
+
 /*end of add new employee*/
 
 /*Display Employees*/
@@ -281,9 +287,10 @@ nav {
   padding: 0;
 }
 
-.search{
+.search {
   margin: 20px 20px;
 }
+
 .search button {
   margin-left: 10px;
   width: 130px;
@@ -323,7 +330,7 @@ nav {
 
 .content .column {
 
- width: 32%;
+  width: 32%;
   padding: 0 15px 30px 0;
 }
 
@@ -367,6 +374,12 @@ nav {
 
 .card .row {
   margin: 0;
+}
+
+#profile img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
 }
 
 .card button {
@@ -443,33 +456,36 @@ nav {
   justify-content: center;
 }
 
-#side-view img{
+#side-view img {
   width: 250px;
+  height: 230px;
+  object-fit: cover;
 }
 
-#side-view button{
+#side-view button {
   margin-left: 15px;
   width: 250px;
 }
 
-#all{
+#all {
   display: block;
 }
 
-#searched{
+#searched {
   display: none;
 }
 
-#searched button{
+#searched button {
   width: 100px;
   margin-left: 20px;
 }
+
 /*End of display employees*/
 
 /*Media*/
-@media screen and (max-width: 3000px) and (min-width: 1920px)  {
+@media screen and (max-width: 3000px) and (min-width: 1920px) {
 
-  .content .column{
+  .content .column {
     width: 24%;
   }
 
@@ -598,13 +614,16 @@ nav {
     margin-top: 80px;
   }
 
-  #side-view td, #update span{
+  #side-view td,
+  #update span {
     font-size: 14px !important;
   }
 
-  #side-view img{
+  #side-view img {
     width: 150px;
+    height: 150px;
   }
+
   /*Display*/
 
   input,

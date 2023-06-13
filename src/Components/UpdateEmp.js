@@ -1,6 +1,5 @@
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-import image from "../Assets/Potraits/4.png";
 
 export default function UpdateEmp(props) {
     const navigate = useNavigate();
@@ -127,7 +126,7 @@ export default function UpdateEmp(props) {
                                                 <tbody>
                                                     <tr>
                                                         <td rowSpan={1}>
-                                                            <img src={image} alt='Employee' />
+                                                            <img src={emp.empImage} alt='Employee' />
                                                         </td>
                                                         <td>
                                                             <span>Name & Surname:</span>

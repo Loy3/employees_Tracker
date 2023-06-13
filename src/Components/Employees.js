@@ -1,7 +1,6 @@
 import "../App.css";
 //import React, { Component } from "react";
 import MyNav from "./MyNav";
-import image from "../Assets/Potraits/4.png";
 import trash from "../Assets/Icons/trash.png";
 import edit from "../Assets/Icons/editing.png";
 
@@ -22,7 +21,7 @@ export default function Employees(props) {
         employees = JSON.parse(stringifiedEmp);
         console.log(employees)
     }
-   
+
     let employee = [{}];
     const [user, setUser] = useState({
         idNumber: '',
@@ -31,6 +30,7 @@ export default function Employees(props) {
         emailAddress: '',
         position: '',
         phoneNumber: '',
+        image: ''
     });
 
     const [searchEmp, setSearchEmp] = useState('');
@@ -48,12 +48,13 @@ export default function Employees(props) {
                     emailAddress: employees[e].empEmailAddress,
                     position: employees[e].empPosition,
                     phoneNumber: employees[e].empPhoneNumber,
+                    image: employees[e].empImage
                 })
 
                 document.getElementById("all").style.display = "none";
                 document.getElementById("searched").style.display = "block";
 
-            } 
+            }
         }
     }
 
@@ -87,11 +88,11 @@ export default function Employees(props) {
                 <br />
 
                 <div id={"all"}>
-                <div className="search">
-                    <input type="text" className="long" placeholder="Enter email address to search" onChange={(event) => setSearchEmp(event.target.value)} />
-                    <button onClick={search}>Search</button>
-                    <br />
-                </div>
+                    <div className="search">
+                        <input type="text" className="long" placeholder="Enter email address to search" onChange={(event) => setSearchEmp(event.target.value)} />
+                        <button onClick={search}>Search</button>
+                        <br />
+                    </div>
                     <div className="row" id={"myCards"}>
                         {employees.map((data, index) => (
 
@@ -99,8 +100,8 @@ export default function Employees(props) {
                                 <div className="card">
 
                                     <div className="row" id={"step1"}>
-                                        <div className="column" >
-                                            <img src={image} alt='Employee' width={100} />
+                                        <div className="column" id={"profile"}>
+                                            <img src={data.empImage} alt='Employee' />
                                         </div>
                                         <div className="column" id={"align-right"}>
                                             <div>
@@ -164,7 +165,7 @@ export default function Employees(props) {
 
                                 <div className="row" id={"step1"}>
                                     <div className="column" >
-                                        <img src={image} alt='Employee' width={100} />
+                                        <img src={user.image} alt='Employee' width={100} />
                                     </div>
                                     <div className="column" id={"align-right"}>
                                         <div>
